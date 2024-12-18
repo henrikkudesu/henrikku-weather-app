@@ -19,7 +19,7 @@ Este projeto foi criado por **curiosidade** e com fins de **estudo**, permitindo
 
 ## 🚀 Hospedagem
 O projeto está **hospedado no Vercel** e pode ser acessado através do link:  
-🔗 [**Acessar o projeto no Vercel**](#https://henrikku-weather-emns3fyub-leonardo-henriques-projects-a75fccf7.vercel.app/)
+🔗 [**Acessar o projeto no Vercel**](https://henrikku-weather-emns3fyub-leonardo-henriques-projects-a75fccf7.vercel.app/)
 
 ---
 

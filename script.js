@@ -49,19 +49,6 @@ function updateWeatherUI(data) {
     weatherIcon.className = `wi ${iconClass}`; // Atualizar o ícone no DOM
 }
 
-
-
-
-
-
-
-
-
-
-
-
-
-
 // Função para mapear códigos de ícones para classes da Weather Icons
 function getIconClass(weather) {
     const code = weather.icon;  // Código do ícone retornado pela API
@@ -91,7 +78,6 @@ function getIconClass(weather) {
     // Retorna o ícone correspondente com base no código da condição climática
     return iconMap[code] || "wi-na"; // Se o código não for encontrado, retorna um ícone padrão "não disponível"
 }
-
 
 // Evento de clique no botão
 searchBtn.addEventListener('click', () => {

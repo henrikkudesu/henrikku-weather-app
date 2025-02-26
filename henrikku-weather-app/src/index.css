@@ -1,0 +1,401 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/* Base para animações de clima */
+.weather-animation {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  overflow: hidden;
+  z-index: 1;
+}
+
+/* Elemento de nuvem comum */
+.cloud {
+  position: absolute;
+  width: 60px;
+  height: 20px;
+  background: rgba(255, 255, 255, 1); /* Aumentada opacidade para 1 */
+  border-radius: 10px;
+  top: 30px;
+  left: 30px;
+  box-shadow: 0 0 10px rgba(255, 255, 255, 0.5); /* Adicionado um leve brilho */
+}
+
+.cloud:before,
+.cloud:after {
+  content: '';
+  position: absolute;
+  background: rgba(255, 255, 255, 1); /* Aumentada opacidade para 1 */
+  border-radius: 50%;
+}
+
+.cloud:before {
+  width: 30px;
+  height: 30px;
+  top: -15px;
+  left: 10px;
+}
+
+.cloud:after {
+  width: 20px;
+  height: 20px;
+  top: -10px;
+  left: 35px;
+}
+
+/* Animações Vento */
+.wind .cloud {
+  animation: cloudMove 8s infinite linear;
+}
+
+.wind .delayed {
+  top: 60px;
+  left: 70px;
+  opacity: 0.9; /* Aumentado de 0.7 para 0.9 */
+  animation-delay: 2s;
+}
+
+.wind-line {
+  position: absolute;
+  height: 4px; /* Aumentado de 2px para 4px */
+  background: rgba(255, 255, 255, 0.9); /* Aumentado de 0.7 para 0.9 */
+  border-radius: 2px;
+  animation: windLineMove 3s infinite linear;
+}
+
+.wind-line-1 {
+  width: 50px;
+  top: 50%;
+  left: 40%;
+}
+
+.wind-line-2 {
+  width: 30px;
+  top: 60%;
+  left: 30%;
+  animation-delay: 0.5s;
+}
+
+.wind-line-3 {
+  width: 40px;
+  top: 40%;
+  left: 50%;
+  animation-delay: 1s;
+}
+
+@keyframes cloudMove {
+  0% {
+    transform: translateX(-100%);
+  }
+  100% {
+    transform: translateX(300%);
+  }
+}
+
+@keyframes windLineMove {
+  0% {
+    transform: translateX(-100%) scaleX(0.5);
+    opacity: 0;
+  }
+  50% {
+    opacity: 0.9; /* Aumentado de 0.7 para 0.9 */
+    transform: translateX(0%) scaleX(1);
+  }
+  100% {
+    transform: translateX(100%) scaleX(0.5);
+    opacity: 0;
+  }
+}
+
+/* Animações Chuva */
+.rain-cloud {
+  top: 40px;
+  left: calc(50% - 30px);
+  animation: none;
+  background: rgba(200, 200, 200, 1); /* Aumentada opacidade para 1 */
+  box-shadow: 0 0 10px rgba(200, 200, 200, 0.5); /* Adicionado um leve brilho */
+}
+
+.rain-cloud:before,
+.rain-cloud:after {
+  background: rgba(200, 200, 200, 1); /* Aumentada opacidade para 1 */
+}
+
+.raindrop {
+  position: absolute;
+  width: 3px; /* Aumentado de 2px para 3px */
+  height: 12px; /* Aumentado de 10px para 12px */
+  background: rgba(120, 190, 255, 1); /* Cor mais azul e opacidade cheia */
+  border-radius: 0 0 5px 5px;
+  animation: rainFall 1.5s infinite linear;
+  box-shadow: 0 0 5px rgba(120, 190, 255, 0.7); /* Adicionado um leve brilho */
+}
+
+.raindrop:nth-child(odd) {
+  left: calc(50% - 15px + (var(--i, 0) * 5px));
+}
+
+.raindrop:nth-child(even) {
+  left: calc(50% + 15px - (var(--i, 0) * 5px));
+}
+
+@keyframes rainFall {
+  0% {
+    transform: translateY(0) scaleY(1);
+    opacity: 1;
+  }
+  70% {
+    opacity: 1;
+  }
+  100% {
+    transform: translateY(200px) scaleY(0.5);
+    opacity: 0;
+  }
+}
+
+/* Animações Sol */
+.sun-circle {
+  position: absolute;
+  width: 60px;
+  height: 60px;
+  background: rgba(255, 215, 0, 1); /* Opacidade total */
+  border-radius: 50%;
+  top: 40px;
+  left: calc(50% - 30px);
+  box-shadow: 0 0 30px rgba(255, 215, 0, 0.9); /* Sombra mais forte */
+  animation: sunPulse 3s infinite alternate;
+}
+
+.sun-ray {
+  position: absolute;
+  width: 4px; /* Aumentado de 3px para 4px */
+  height: 20px;
+  background: rgba(255, 215, 0, 1); /* Opacidade total */
+  top: 40px;
+  left: calc(50% - 2px);
+  transform-origin: center 50px;
+  animation: sunRayPulse 2s infinite alternate;
+  box-shadow: 0 0 5px rgba(255, 215, 0, 0.8); /* Adicionado um leve brilho */
+}
+
+@keyframes sunPulse {
+  0% {
+    box-shadow: 0 0 20px rgba(255, 215, 0, 0.8);
+    transform: scale(1);
+  }
+  100% {
+    box-shadow: 0 0 40px rgba(255, 215, 0, 1);
+    transform: scale(1.3);
+  }
+}
+
+/* Animações Neve */
+.snow-cloud {
+  top: 40px;
+  left: calc(50% - 30px);
+  animation: none;
+  background: rgb(172, 172, 172); /* Opacidade total */
+  box-shadow: 0 0 10px rgb(172, 172, 172); /* Adicionado um leve brilho */
+}
+
+.snow-cloud:before,
+.snow-cloud:after {
+  background: rgb(172, 172, 172);
+}
+
+.snowflake {
+  position: absolute;
+  width: 10px; /* Aumentado de 8px para 10px */
+  height: 10px; /* Aumentado de 8px para 10px */
+  background: white;
+  border-radius: 50%;
+  top: -10px;
+  opacity: 1; /* Aumentado de 0.8 para 1 */
+  animation: snowFall linear infinite;
+  box-shadow: 0 0 5px rgba(255, 255, 255, 0.7); /* Adicionado um leve brilho */
+}
+
+@keyframes snowFall {
+  0% {
+    transform: translateY(0) rotate(0deg);
+  }
+  100% {
+    transform: translateY(400px) rotate(360deg);
+  }
+}
+
+.app-container {
+  min-height: 100vh;
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  padding: 20px;
+  transition: all 1.5s ease;
+  overflow: hidden;
+  position: relative;
+}
+
+/* Overlay de partículas para cada condição */
+.app-container::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  pointer-events: none;
+  z-index: 1;
+  opacity: 0; /* Começamos com opacidade 0 */
+  transition: opacity 2s ease, background 2s ease; /* Transição para o overlay */
+}
+
+/* Estilos específicos por condição */
+/* Estilos específicos por condição - ajustando transições */
+.bg-default {
+  background: linear-gradient(135deg, #1e293b, #0f172a);
+}
+
+.bg-default::before {
+  background: radial-gradient(
+    ellipse at top right,
+    rgba(59, 130, 246, 0.1),
+    transparent 80%
+  );
+}
+
+.bg-sun {
+  background: linear-gradient(135deg, #3b82f6, #93c5fd, #60a5fa);
+}
+
+.bg-sun::before {
+  background: radial-gradient(
+    circle at 70% 20%,
+    rgba(252, 211, 77, 0.6),
+    transparent 40%
+  );
+  animation: sunlight 15s infinite alternate;
+}
+.bg-rain {
+  background: linear-gradient(to bottom, #1e293b, #334155, #1e293b);
+}
+
+.bg-rain::before {
+  background: linear-gradient(
+    to bottom,
+    transparent 0%,
+    rgba(203, 213, 225, 0.05) 10%,
+    rgba(203, 213, 225, 0.1) 100%
+  );
+  animation: rain-background 8s infinite linear;
+}
+
+.bg-wind {
+  background: linear-gradient(135deg, #64748b, #94a3b8, #64748b);
+}
+
+.bg-wind::before {
+  background: repeating-linear-gradient(
+    90deg,
+    transparent 0%,
+    rgba(255, 255, 255, 0.05) 1%,
+    transparent 2%
+  );
+  animation: wind-background 6s infinite linear;
+}
+
+.bg-snow {
+  background: linear-gradient(to bottom, #94a3b8, #bac4d1, #d7e0eb);
+}
+
+.bg-snow::before {
+  background: radial-gradient(circle at 10% 20%, white 1px, transparent 1px),
+    radial-gradient(circle at 50% 50%, white 1px, transparent 1px),
+    radial-gradient(circle at 90% 30%, white 1px, transparent 1px),
+    radial-gradient(circle at 70% 70%, white 1px, transparent 1px);
+  background-size: 200px 200px;
+  animation: snow-background 20s infinite linear;
+  opacity: 1;
+}
+
+@keyframes sunlight {
+  0%,
+  100% {
+    opacity: 0.5;
+  }
+  50% {
+    opacity: 0.8;
+  }
+}
+
+@keyframes rain-background {
+  0% {
+    background-position: 0 0;
+  }
+  100% {
+    background-position: 0 100%;
+  }
+}
+
+@keyframes wind-background {
+  0% {
+    background-position: 0 0;
+  }
+  100% {
+    background-position: 100% 0;
+  }
+}
+
+@keyframes snow-background {
+  0% {
+    background-position: 0 0;
+  }
+  100% {
+    background-position: 50px 500px;
+  }
+}
+
+/* Container principal com efeito de vidro */
+.content-container {
+  background: rgba(255, 255, 255, 0.1);
+  backdrop-filter: blur(10px);
+  border-radius: 20px;
+  padding: 30px;
+  box-shadow: 0 8px 32px rgba(0, 0, 0, 0.2);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  width: 100%;
+  max-width: 500px;
+  z-index: 10;
+}
+
+/* Classe para estado de transição */
+.transitioning {
+  transition: all 2s ease;
+}
+
+/* Efeito de fade para os elementos internos durante transição */
+.transitioning .content-container {
+  transition: opacity 0.5s ease;
+  opacity: 0.95;
+}
+
+.app-container:not(.transitioning) .content-container {
+  transition: opacity 1s ease;
+  opacity: 1;
+}
+
+@media (max-width: 640px) {
+  .content-container {
+    padding: 20px;
+    width: 90%;
+  }
+
+  .weather-animation {
+    transform: scale(0.9);
+  }
+}

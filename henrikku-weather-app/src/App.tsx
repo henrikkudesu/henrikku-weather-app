@@ -139,7 +139,7 @@ function App() {
                 Buscando...
               </span>
             ) : (
-              'Buscar'
+              'Search'
             )}
           </button>
         </motion.div>
